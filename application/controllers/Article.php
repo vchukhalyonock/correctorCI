@@ -25,7 +25,7 @@ class Article extends REST_Controller {
         if(!$requestJSON) {
             $this->response(['error' => 'Invalid JSON'], 400);
         } elseif(isset($requestJSON->articleURL) && isset($requestJSON->originalText) && isset($requestJSON->usersText)) {
-            $recordId = $this->corrections->create($requestJSON->articleURL, $requestJSON->originalText, $requestJSON->usersText);
+            $recordId = $this->corrections->create(rawurldecode($requestJSON->articleURL), $requestJSON->originalText, $requestJSON->usersText);
             $this->response([
                 'id' => $recordId
             ]);
