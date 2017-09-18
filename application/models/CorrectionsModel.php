@@ -65,12 +65,12 @@ class CorrectionsModel extends CI_Model {
      * @return mixed
      */
     public function getAll() {
-        $res = $this
+        $res = $this->db
             ->select('
                 id,
                 articleURL,
                 originalText,
-                usersTest,
+                usersText,
                 isApproved
             ')
             ->from($this->_table)
