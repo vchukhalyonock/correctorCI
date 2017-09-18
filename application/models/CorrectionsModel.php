@@ -59,4 +59,24 @@ class CorrectionsModel extends CI_Model {
 
         return true;
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function getAll() {
+        $res = $this
+            ->select('
+                id,
+                articleURL,
+                originalText,
+                usersTest,
+                isApproved
+            ')
+            ->from($this->_table)
+            ->where('isApproved', 0)
+            ->get();
+
+        return $res->result();
+    }
 }
