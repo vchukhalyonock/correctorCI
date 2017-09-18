@@ -6,3 +6,4 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/datatables.min.css"/>
 
 <script type="text/javascript" src="<?php echo base_url()?>js/datatables.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/bootbox.min.js"></script>

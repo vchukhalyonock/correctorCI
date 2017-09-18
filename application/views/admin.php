@@ -29,7 +29,7 @@
                                     <button type="button" class="btn btn-success" value="<?php echo $correction->id?>">Approve</button>&nbsp;&nbsp;
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-danger">Delete</button>
+                                    <button type="button" class="btn btn-danger" value="<?php echo $correction->id?>">Delete</button>
                                 </td>
                             </tr>
                         <?php endforeach;?>
@@ -62,6 +62,30 @@
                             .remove()
                             .draw();
                     }
+                }
+            });
+        });
+
+        $('button.btn-danger').click(function () {
+            var obj = $(this);
+            bootbox.confirm("Are you sure?", function (result) {
+                if(result) {
+                    $.ajax({
+                        url: '/fb/delete',
+                        data: {
+                            id: obj.val()
+                        },
+                        method: 'post',
+                        dataType: 'json',
+                        success: function (res) {
+                            if (res.error == false) {
+                                table
+                                    .row(obj.parents('tr'))
+                                    .remove()
+                                    .draw();
+                            }
+                        }
+                    });
                 }
             });
         });
