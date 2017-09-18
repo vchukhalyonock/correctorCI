@@ -10,14 +10,23 @@ $(document).ready(function () {
         }
     }
 
-    alert($.urlParam('articleURL'));
-
     $.ajax({
         url : '/article?url=' + $.urlParam('articleURL'),
         method : "get",
         dataType : "json",
         success : function (res) {
-            
+            $('#correctorForm').append('<h2>TITLE</h2><div class="form-group">\n' +
+                '    <label for="title">' + res.title + '</label>\n' +
+                '    <input type="text" id="title" class="form-control input-lg" name="title" value="' + res.title + '"/>' +
+                '  </div><button class="btn btn-lg btn-primary btn-block signup-btn" value="p' + i +'" type="submit">\n' +
+                '  Send</button><hr/><h2>Paragraphs</h2>');
+            for(var i = 0; i < res.paragraphs.length; i++) {
+                $('#correctorForm').append('<div class="form-group">\n' +
+                    '    <label for="p' + i + '">' + res.paragraphs[i] + '</label>\n' +
+                    '    <textarea class="form-control input-lg" id="p' + i + '">' + res.paragraphs[i] + '</textarea>\n' +
+                    '  </div><button class="btn btn-lg btn-primary btn-block signup-btn" value="p' + i +'" type="submit">\n' +
+                    '  Send</button><hr/>');
+            }
         }
     });
 });
