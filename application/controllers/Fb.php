@@ -5,7 +5,7 @@ class Fb extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('CorrectionsModel', 'Corrections');
+        $this->load->model('CorrectionsModel', 'corrections');
     }
 
     public function index() {
@@ -14,7 +14,12 @@ class Fb extends MY_Controller {
 
 
     public function results() {
-
+        $this->load->view(
+            'admin',
+            [
+                'corrections' => $this->corrections->getAll()
+            ]
+        );
     }
 
 
