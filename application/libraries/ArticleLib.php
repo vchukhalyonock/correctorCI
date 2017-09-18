@@ -1,19 +1,11 @@
 <?php
 
-require (APPPATH . 'third_party/phpQuery/phpQuery.php');
+require_once (APPPATH . 'third_party/phpQuery/phpQuery.php');
+require_once (APPPATH . 'libraries/ArticlePage.php');
 
 class ArticleLib {
 
-    private $_article = null;
-    private $_content = false;
-
     public function getArticle($articleURL) {
-        $document = phpQuery::newDocument($articleURL);
-        $match = $document->find('main');
-    }
-
-
-    private function _getArticleTextFromContent() {
-
+        return new ArticlePage($articleURL);
     }
 }
